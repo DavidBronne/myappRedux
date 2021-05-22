@@ -17,10 +17,16 @@ class App extends Component {
     let newNinja = [...this.state.ninjas,ninja]
     this.setState({ninjas:newNinja})
     /* console.log('addNinja',this.state); */
-    
+ }
 
-    
-  }
+ deletNinja =(id) => {
+    let ninjas = this.state.ninjas.filter((ninja)=>{
+      return ninja.id !== id
+    })
+    this.setState({
+      ninjas:ninjas
+    })
+ }
 
   render() {
 
@@ -28,7 +34,7 @@ class App extends Component {
       <div className="App">
         <h1>My first react app</h1>
         <p>Welcome</p>
-        <Ninjas ninjas={this.state.ninjas}/>
+        <Ninjas deletNinja={this.deletNinja} ninjas={this.state.ninjas}/>
         <AddNinja addNinja={this.addNinja} />
       </div>
     );
